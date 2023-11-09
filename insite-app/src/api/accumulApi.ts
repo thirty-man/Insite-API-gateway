@@ -82,10 +82,26 @@ const getEnterCountData = async (startDateTime: Date, endDateTime: Date) => {
   return [];
 };
 
+const getEntryExitData = async (startDateTime: Date, endDateTime: Date) => {
+  try {
+    const response = await accumulAPI.post("/flow/entry-exit", {
+      applicationToken,
+      startDateTime,
+      endDateTime,
+    });
+    return response.data;
+  } catch (error) {
+    // console.error(error); // 에러 처리
+  }
+
+  return [];
+};
+
 export {
   getRefData,
   getExitData,
   getButtonDetailData,
   getBounceCountData,
   getEnterCountData,
+  getEntryExitData,
 };

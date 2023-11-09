@@ -28,11 +28,10 @@ function UrlFlowStatstics() {
     const fetchData = async () => {
       try {
         const response = await getRefData(parseStartDateTime, parseEndDateTime);
-        if (response.referrerFlowDtos.length <= 0) setData([]);
+        if (!response.referrerFlowDtos) setData([]);
         else setData(response.referrerFlowDtos);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
 

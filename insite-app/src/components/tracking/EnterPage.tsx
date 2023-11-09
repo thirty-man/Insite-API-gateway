@@ -1,4 +1,4 @@
-import { getExitData } from "@api/accumulApi";
+import { getEnterCountData } from "@api/accumulApi";
 import {
   Border,
   StyledTable,
@@ -7,13 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "@assets/styles/tableStyles";
-import { PageExitType } from "@customtypes/dataTypes";
+import { PageEnterDtoType } from "@customtypes/dataTypes";
 import { RootState } from "@reducer";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 function EnterPage() {
-  const [data, setData] = useState<PageExitType[]>([]);
+  const [data, setData] = useState<PageEnterDtoType[]>([]);
   const startDateTime = useSelector(
     (state: RootState) => state.DateSelectionInfo.start,
   );
@@ -27,15 +27,14 @@ function EnterPage() {
     const parseEndDateTime = new Date(endDateTime);
     const fetchData = async () => {
       try {
-        const response = await getExitData(
+        const response = await getEnterCountData(
           parseStartDateTime,
           parseEndDateTime,
         );
-        if (response.exitFlowDtoList.length <= 0) setData([]);
-        else setData(response.exitFlowDtoList);
+        if (!response.enterFlowDtoList) setData([]);
+        else setData(response.enterFlowDtoList);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
 
@@ -57,9 +56,9 @@ function EnterPage() {
           {data.map((item, index) => (
             <TableRow key={item.id}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>{item.currentUrl}</TableCell>
-              <TableCell>{item.exitCount}</TableCell>
-              <TableCell>{item.ratio * 100} %</TableCell>
+              <TableCell>{item.enterPage}</TableCell>
+              <TableCell>{item.enterCount}</TableCell>
+              <TableCell>{+item.enterRate.toFixed(4) * 100} %</TableCell>
             </TableRow>
           ))}
         </TableBody>

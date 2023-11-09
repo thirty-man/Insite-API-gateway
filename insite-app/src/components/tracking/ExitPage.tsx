@@ -31,11 +31,10 @@ function ExitPage() {
           parseStartDateTime,
           parseEndDateTime,
         );
-        if (response.exitFlowDtoList.length <= 0) setData([]);
+        if (!response.exitFlowDtoList) setData([]);
         else setData(response.exitFlowDtoList);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
 
@@ -59,7 +58,7 @@ function ExitPage() {
               <TableCell>{index + 1}</TableCell>
               <TableCell>{item.currentUrl}</TableCell>
               <TableCell>{item.exitCount}</TableCell>
-              <TableCell>{item.ratio * 100} %</TableCell>
+              <TableCell>{+item.ratio.toFixed(4) * 100} %</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -1,6 +1,7 @@
 import {
   BounceCount,
   EnterPage,
+  EntryExitPage,
   ExitPage,
   UrlFlowStatstics,
 } from "@components/tracking";
@@ -97,11 +98,11 @@ function TrackingPage() {
         </DefaultBox>
         <DefaultBox width="30rem" height="25rem">
           <TitleBox width="" height="10%">
-            출구 페이지
+            출구 페이지(30분 단위)
           </TitleBox>
           <ContentDiv>
             <TextBox width="90%" height="90%">
-              <UrlFlowStatstics />
+              <EntryExitPage />
             </TextBox>
           </ContentDiv>
         </DefaultBox>

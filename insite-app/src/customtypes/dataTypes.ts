@@ -81,18 +81,25 @@ type AbnormalType = {
   osId: string;
 };
 
-type BounceType = {
+type BounceDtoType = {
   id: number;
   currentUrl: string;
   count: number;
   ratio: number;
 };
 
-type EntryType = {
+type PageEnterDtoType = {
   id: number;
   enterPage: string;
   enterCount: number;
   enterRate: number;
+};
+
+type EntryExitDtoType = {
+  id: number;
+  exitPage: string;
+  exitCount: number;
+  exitRate: number;
 };
 
 // -------------- Data Type
@@ -117,6 +124,7 @@ export type {
   AbnormalType,
   ButtonType,
   PageExitType,
-  BounceType,
-  EntryType,
+  BounceDtoType,
+  PageEnterDtoType,
+  EntryExitDtoType,
 };
