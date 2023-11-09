@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { UserCountDtoType } from "@customtypes/dataTypes";
-import { getUserCount } from "@api/realtimeApi";
+import { UserRefDtoType } from "@customtypes/dataTypes";
+import { getRefData } from "@api/accumulApi";
 import {
   Border,
   StyledTable,
@@ -9,15 +9,26 @@ import {
   TableHeader,
   TableRow,
 } from "@assets/styles/tableStyles";
+import { useSelector } from "react-redux";
+import { RootState } from "@reducer";
 
-function PageUsageStatistics() {
-  const [data, setData] = useState<UserCountDtoType[]>([]);
+function UrlFlowStatstics() {
+  const [data, setData] = useState<UserRefDtoType[]>([]);
+  const startDateTime = useSelector(
+    (state: RootState) => state.DateSelectionInfo.start,
+  );
+
+  const endDateTime = useSelector(
+    (state: RootState) => state.DateSelectionInfo.end,
+  );
+
   useEffect(() => {
+    const parseStartDateTime = new Date(startDateTime);
+    const parseEndDateTime = new Date(endDateTime);
     const fetchData = async () => {
       try {
-        const response = await getUserCount();
-        const userCountDto = response.userCountDtoList;
-        setData(userCountDto);
+        const response = await getRefData(parseStartDateTime, parseEndDateTime);
+        setData(response.referrerFlowDtos);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error); // 에러 처리
@@ -25,28 +36,24 @@ function PageUsageStatistics() {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 5000);
-    return () => clearInterval(intervalId);
-  }, []);
+  }, [endDateTime, startDateTime]);
 
-  return data.length > 0 ? (
+  return data && data.length > 0 ? (
     <Border>
       <StyledTable>
         <TableHeader>
           <tr>
             <th>순위</th>
             <th>URL</th>
-            <th>사용자 수</th>
-            <th>랜더링 시간</th>
+            <th>명</th>
           </tr>
         </TableHeader>
         <TableBody>
           {data.map((item, index) => (
             <TableRow key={item.id}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>{item.currentPage}</TableCell>
+              <TableCell>{item.referrer}</TableCell>
               <TableCell>{item.count}</TableCell>
-              <TableCell>{item.responseTime}s</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -57,4 +64,4 @@ function PageUsageStatistics() {
   );
 }
 
-export default PageUsageStatistics;
+export default UrlFlowStatstics;

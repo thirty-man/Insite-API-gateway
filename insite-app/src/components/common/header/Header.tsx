@@ -58,6 +58,7 @@ const ProfileImg = styled.img`
   margin-left: 15px;
   cursor: pointer;
 `;
+
 const Option = styled.button`
   width: 100%;
   color: white;
@@ -250,8 +251,6 @@ function Header() {
       dispatch(setStartDate(pastDate));
       dispatch(setEndDate(latestDate));
       setCurrentPathname(location.pathname);
-      console.log(currentPathname);
-      console.log(location.pathname);
     }
     setCurrentPathname(location.pathname);
   }, [location.pathname, currentPathname, dispatch, pastDate, latestDate]);
@@ -334,8 +333,6 @@ function Header() {
     dispatch(setStartDate(newStartDate));
     dispatch(setEndDate(newEndDate));
     setOpenDate(false);
-    console.log(newStartDate);
-    console.log(newEndDate);
   };
 
   const formatDateString = (dateString: string): string => {
