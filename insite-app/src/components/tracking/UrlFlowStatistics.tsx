@@ -12,7 +12,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "@reducer";
 
-function UrlFlowStatstics() {
+function UrlFlowStatistics() {
   const [data, setData] = useState<UserRefDtoType[]>([]);
   const startDateTime = useSelector(
     (state: RootState) => state.DateSelectionInfo.start,
@@ -64,4 +64,4 @@ function UrlFlowStatstics() {
   );
 }
 
-export default UrlFlowStatstics;
+export default UrlFlowStatistics;

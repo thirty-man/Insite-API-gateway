@@ -3,7 +3,7 @@ import {
   EnterPage,
   EntryExitPage,
   ExitPage,
-  UrlFlowStatstics,
+  UrlFlowStatistics,
 } from "@components/tracking";
 import { DefaultBox, TextBox, TitleBox } from "@components/common";
 import styled from "styled-components";
@@ -59,7 +59,7 @@ function TrackingPage() {
           </TitleBox>
           <ContentDiv>
             <TextBox width="90%" height="90%">
-              <UrlFlowStatstics />
+              <UrlFlowStatistics />
             </TextBox>
           </ContentDiv>
         </DefaultBox>
@@ -98,7 +98,7 @@ function TrackingPage() {
         </DefaultBox>
         <DefaultBox width="30rem" height="25rem">
           <TitleBox width="" height="10%">
-            출구 페이지(30분 단위)
+            출구 페이지(30분)
           </TitleBox>
           <ContentDiv>
             <TextBox width="90%" height="90%">
