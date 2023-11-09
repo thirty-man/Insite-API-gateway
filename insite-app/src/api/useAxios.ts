@@ -26,7 +26,7 @@ const useAxios = (initialConfig: AxiosRequestConfig) => {
         setResponse(res);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
-        setError(err);
+        // setError(err);
       } finally {
         setLoading(false);
       }

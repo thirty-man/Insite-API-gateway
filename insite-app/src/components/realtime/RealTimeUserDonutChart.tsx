@@ -24,11 +24,10 @@ function RealTimeUserDonutChart() {
             },
           },
         }));
-
-        setData(seriesData);
+        if (!userCountDto) setData([]);
+        else setData(seriesData);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
 

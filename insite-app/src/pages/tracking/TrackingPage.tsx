@@ -1,4 +1,9 @@
-import { BounceCount, ExitPage, UrlFlowStatstics } from "@components/tracking";
+import {
+  BounceCount,
+  EnterPage,
+  ExitPage,
+  UrlFlowStatstics,
+} from "@components/tracking";
 import { DefaultBox, TextBox, TitleBox } from "@components/common";
 import styled from "styled-components";
 
@@ -86,7 +91,7 @@ function TrackingPage() {
           </TitleBox>
           <ContentDiv>
             <TextBox width="90%" height="90%">
-              <UrlFlowStatstics />
+              <EnterPage />
             </TextBox>
           </ContentDiv>
         </DefaultBox>

@@ -17,10 +17,10 @@ function UrlFlowStatstics() {
     const fetchData = async () => {
       try {
         const response = await getRefData(); // await를 사용하여 Promise를 기다립니다.
-        setData(response.referrerDtoList);
+        if (!response.referrerDtoList) setData([]);
+        else setData(response.referrerDtoList);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
 

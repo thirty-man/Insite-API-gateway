@@ -11,8 +11,7 @@ const getRefData = async (startDateTime: Date, endDateTime: Date) => {
     });
     return response.data;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error); // 에러 처리
+    // console.error(error); // 에러 처리
   }
 
   return [];
@@ -27,8 +26,7 @@ const getExitData = async (startDateTime: Date, endDateTime: Date) => {
     });
     return response.data;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error); // 에러 처리
+    // console.error(error); // 에러 처리
   }
 
   return [];
@@ -48,8 +46,7 @@ const getButtonDetailData = async (
     });
     return response.data;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error); // 에러 처리
+    // console.error(error); // 에러 처리
   }
 
   return [];
@@ -64,8 +61,7 @@ const getBounceCountData = async (startDateTime: Date, endDateTime: Date) => {
     });
     return response.data;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error); // 에러 처리
+    // console.error(error); // 에러 처리
   }
 
   return [];
@@ -80,8 +76,7 @@ const getEnterCountData = async (startDateTime: Date, endDateTime: Date) => {
     });
     return response.data;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error); // 에러 처리
+    // console.error(error); // 에러 처리
   }
 
   return [];

@@ -28,7 +28,8 @@ function UrlFlowStatstics() {
     const fetchData = async () => {
       try {
         const response = await getRefData(parseStartDateTime, parseEndDateTime);
-        setData(response.referrerFlowDtos);
+        if (response.referrerFlowDtos.length <= 0) setData([]);
+        else setData(response.referrerFlowDtos);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error); // 에러 처리
@@ -44,7 +45,7 @@ function UrlFlowStatstics() {
         <TableHeader>
           <tr>
             <th>순위</th>
-            <th>URL</th>
+            <th>유입 URL</th>
             <th>명</th>
           </tr>
         </TableHeader>

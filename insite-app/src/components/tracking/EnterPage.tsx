@@ -31,7 +31,8 @@ function EnterPage() {
           parseStartDateTime,
           parseEndDateTime,
         );
-        setData(response.exitFlowDtoList);
+        if (response.exitFlowDtoList.length <= 0) setData([]);
+        else setData(response.exitFlowDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error); // 에러 처리
@@ -47,7 +48,7 @@ function EnterPage() {
         <TableHeader>
           <tr>
             <th>순위</th>
-            <th>Url</th>
+            <th>진입 URL</th>
             <th>진입 횟수</th>
             <th>비율</th>
           </tr>

@@ -31,7 +31,8 @@ function BounceCount() {
           parseStartDateTime,
           parseEndDateTime,
         );
-        setData(response.bounceDtoList);
+        if (response.bounceDtoList.length <= 0) setData([]);
+        else setData(response.bounceDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error); // 에러 처리
@@ -47,7 +48,7 @@ function BounceCount() {
         <TableHeader>
           <tr>
             <th>순위</th>
-            <th>Url</th>
+            <th>바운스 URL</th>
             <th>바운스 횟수</th>
             <th>비율</th>
           </tr>
