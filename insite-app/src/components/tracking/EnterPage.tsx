@@ -1,4 +1,4 @@
-import { getBounceCountData } from "@api/accumulApi";
+import { getExitData } from "@api/accumulApi";
 import {
   Border,
   StyledTable,
@@ -7,13 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "@assets/styles/tableStyles";
-import { BounceType } from "@customtypes/dataTypes";
+import { PageExitType } from "@customtypes/dataTypes";
 import { RootState } from "@reducer";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-function BounceCount() {
-  const [data, setData] = useState<BounceType[]>([]);
+function EnterPage() {
+  const [data, setData] = useState<PageExitType[]>([]);
   const startDateTime = useSelector(
     (state: RootState) => state.DateSelectionInfo.start,
   );
@@ -27,11 +27,11 @@ function BounceCount() {
     const parseEndDateTime = new Date(endDateTime);
     const fetchData = async () => {
       try {
-        const response = await getBounceCountData(
+        const response = await getExitData(
           parseStartDateTime,
           parseEndDateTime,
         );
-        setData(response.bounceDtoList);
+        setData(response.exitFlowDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error); // 에러 처리
@@ -39,7 +39,7 @@ function BounceCount() {
     };
 
     fetchData();
-  }, [endDateTime, startDateTime]);
+  }, [startDateTime, endDateTime]);
 
   return data && data.length > 0 ? (
     <Border>
@@ -48,7 +48,7 @@ function BounceCount() {
           <tr>
             <th>순위</th>
             <th>Url</th>
-            <th>바운스 횟수</th>
+            <th>진입 횟수</th>
             <th>비율</th>
           </tr>
         </TableHeader>
@@ -57,7 +57,7 @@ function BounceCount() {
             <TableRow key={item.id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{item.currentUrl}</TableCell>
-              <TableCell>{item.count}</TableCell>
+              <TableCell>{item.exitCount}</TableCell>
               <TableCell>{item.ratio * 100} %</TableCell>
             </TableRow>
           ))}
@@ -69,4 +69,4 @@ function BounceCount() {
   );
 }
 
-export default BounceCount;
+export default EnterPage;

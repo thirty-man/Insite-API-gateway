@@ -88,6 +88,13 @@ type BounceType = {
   ratio: number;
 };
 
+type EntryType = {
+  id: number;
+  enterPage: string;
+  enterCount: number;
+  enterRate: number;
+};
+
 // -------------- Data Type
 type ButtonType = {
   id: number;
@@ -111,4 +118,5 @@ export type {
   ButtonType,
   PageExitType,
   BounceType,
+  EntryType,
 };
