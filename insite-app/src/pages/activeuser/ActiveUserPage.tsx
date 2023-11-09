@@ -1,13 +1,5 @@
-import RealTimeUserDonutChart from "@components/chart/RealTimeUserDonutChart";
+import { DefaultBox, TextBox, TitleBox } from "@components/common";
 import styled from "styled-components";
-import { DefaultBox } from "@components/common";
-import TextBox from "@components/common/TextBox";
-import TitleBox from "@components/common/TitleBox";
-import {
-  ButtonStatistics,
-  PageUsageStatistics,
-  UrlFlowStatstics,
-} from "@components/realtime";
 
 const FirstCol = styled.div`
   display: flex;
@@ -22,14 +14,20 @@ const ContentDiv = styled.div`
   flex-direction: column;
   font-size: 20px;
   align-items: center;
-
   width: 100%;
   height: 90%;
 `;
 
+const InvisibleDiv = styled.div`
+  width: 30rem;
+  height: 25rem;
+  margin: 1%;
+  padding: 0;
+  border-radius: 15px;
+`;
+
 const SecondCol = styled.div`
   display: flex;
-  justify-content: flex-end;
   width: 100%;
   top: 0;
   right: 0;
@@ -44,58 +42,72 @@ const ThirdCol = styled.div`
   background-color: ${(props) => props.theme.colors.b2};
 `;
 
-const ContentHeader = styled.div`
-  font-size: 1.5rem;
-`;
-
 function ActiveUserPage() {
   return (
     <>
       <FirstCol>
         <DefaultBox width="30rem" height="25rem">
-          <TitleBox width="" height="10%" fontSize="30px">
-            <ContentHeader>활동 사용자 수 조회</ContentHeader>
+          <TitleBox width="" height="10%">
+            활동 사용자 수 조회
           </TitleBox>
           <ContentDiv>
-            <RealTimeUserDonutChart />
+            <TextBox width="90%" height="90%">
+              표 데이터
+            </TextBox>
           </ContentDiv>
         </DefaultBox>
         <DefaultBox width="30rem" height="25rem">
-          <TitleBox width="" height="10%" fontSize="30px">
-            <ContentHeader>URL별 활동 사용자 평균 체류 시간</ContentHeader>
+          <TitleBox width="" height="10%">
+            활동 사용자 평균 체류 시간
           </TitleBox>
-          <TextBox width="90%" height="80%">
-            <PageUsageStatistics />
-          </TextBox>
+          <ContentDiv>
+            <TextBox width="90%" height="90%">
+              하트비트 데이터
+            </TextBox>
+          </ContentDiv>
         </DefaultBox>
         <DefaultBox width="30rem" height="25rem">
-          <TitleBox width="" height="10%" fontSize="30px">
-            <ContentHeader>URL별 활동 사용자 수 / 사용자 수</ContentHeader>
+          <TitleBox width="" height="10%">
+            활동 사용자 수 / 사용자 수
           </TitleBox>
-          <TextBox width="90%" height="80%">
-            <PageUsageStatistics />
-          </TextBox>
+          <ContentDiv>
+            <TextBox width="90%" height="90%">
+              하트비트 데이터
+            </TextBox>
+          </ContentDiv>
         </DefaultBox>
       </FirstCol>
       <SecondCol>
-        <DefaultBox width="24rem" height="25rem">
-          <TitleBox width="" height="10%" fontSize="30px">
+        <InvisibleDiv />
+        <DefaultBox width="30rem" height="25rem">
+          <TitleBox width="" height="10%">
             OS별 활동 사용자 수
           </TitleBox>
-          <TextBox width="90%" height="80%">
-            <UrlFlowStatstics />
-          </TextBox>
+          <ContentDiv>
+            <TextBox width="90%" height="90%">
+              도넛 데이터
+            </TextBox>
+          </ContentDiv>
         </DefaultBox>
-        <DefaultBox width="24rem" height="25rem">
-          <TitleBox width="" height="10%" fontSize="30px">
-            <ContentHeader>페이지 조회/ 활동 사용자 수</ContentHeader>
+        <DefaultBox width="30rem" height="25rem">
+          <TitleBox width="" height="10%">
+            페이지 조회 / 활동 사용자 수
           </TitleBox>
-          <TextBox width="90%" height="80%">
-            <ButtonStatistics />
-          </TextBox>
+          <ContentDiv>
+            <TextBox width="90%" height="90%">
+              표 데이터
+            </TextBox>
+          </ContentDiv>
         </DefaultBox>
       </SecondCol>
-      <ThirdCol>t</ThirdCol>
+      <ThirdCol>
+        <DefaultBox width="102rem" height="25rem">
+          <TitleBox width="" height="10%">
+            시간 별 활동 사용자 수
+          </TitleBox>
+          <ContentDiv>표 + 아이콘</ContentDiv>
+        </DefaultBox>
+      </ThirdCol>
     </>
   );
 }
