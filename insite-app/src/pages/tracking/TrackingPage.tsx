@@ -3,6 +3,7 @@ import {
   EnterPage,
   EntryExitPage,
   ExitPage,
+  PageMovingStatistics,
   UrlFlowStatistics,
 } from "@components/tracking";
 import { DefaultBox, TextBox, TitleBox } from "@components/common";
@@ -108,11 +109,13 @@ function TrackingPage() {
         </DefaultBox>
       </SecondCol>
       <ThirdCol>
-        <DefaultBox width="102rem" height="25rem">
-          <TitleBox width="" height="10%">
+        <DefaultBox width="96rem" height="25rem">
+          <TitleBox width="100%" height="10%">
             페이지 이동 통계
           </TitleBox>
-          <ContentDiv>안녕</ContentDiv>
+          <ContentDiv>
+            <PageMovingStatistics />
+          </ContentDiv>
         </DefaultBox>
       </ThirdCol>
     </>
