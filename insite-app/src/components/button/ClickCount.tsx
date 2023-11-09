@@ -12,11 +12,11 @@ function ClickCount() {
   );
   const [data, setData] = useState<ButtonType[]>([]);
   const startDateTime = useSelector(
-    (state: RootState) => state.DateSelectionInfo.start,
+    (state: RootState) => state.dateSelectionInfo.start,
   );
 
   const endDateTime = useSelector(
-    (state: RootState) => state.DateSelectionInfo.end,
+    (state: RootState) => state.dateSelectionInfo.end,
   );
 
   useEffect(() => {
