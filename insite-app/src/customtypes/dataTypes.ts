@@ -108,6 +108,18 @@ type UrlFlowDtoType = {
   count: number;
 };
 
+type ButtonDIstDtoType = {
+  id: number;
+  name: string;
+  clickCounts: number;
+  increaseDecreaseRate: number;
+};
+
+type EveryButtonDistResDto = {
+  totalAvg: number;
+  buttonDistDtoList: ButtonDIstDtoType[];
+};
+
 // -------------- Data Type
 type ButtonType = {
   id: number;
@@ -134,4 +146,6 @@ export type {
   PageEnterDtoType,
   EntryExitDtoType,
   UrlFlowDtoType,
+  EveryButtonDistResDto,
+  ButtonDIstDtoType,
 };

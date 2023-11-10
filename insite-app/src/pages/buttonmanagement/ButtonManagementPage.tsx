@@ -1,4 +1,4 @@
-import ClickCount from "@components/button";
+import { ButtonStatistics, ClickCount } from "@components/button";
 import { DefaultBox, TextBox, TitleBox } from "@components/common";
 import { ButtonType, ItemType } from "@customtypes/dataTypes";
 import styled from "styled-components";
@@ -69,7 +69,9 @@ function ButtonManagementPage() {
           <TitleBox width="" height="10%">
             버튼 통계
           </TitleBox>
-          <ContentDiv>{/* <ClickCount /> */}</ContentDiv>
+          <ContentDiv>
+            <ButtonStatistics />
+          </ContentDiv>
         </DefaultBox>
         <DefaultBox width="62rem" height="25rem">
           <TitleBox width="" height="10%">

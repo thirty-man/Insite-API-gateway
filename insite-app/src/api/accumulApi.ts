@@ -117,6 +117,21 @@ const getUrlFlowData = async (
   return [];
 };
 
+const getButtonDistData = async (startDateTime: Date, endDateTime: Date) => {
+  try {
+    const response = await accumulAPI.post("/buttons/every-button-rate", {
+      applicationToken,
+      startDateTime,
+      endDateTime,
+    });
+    return response.data;
+  } catch (error) {
+    // console.error(error); // 에러 처리
+  }
+
+  return [];
+};
+
 export {
   getRefData,
   getExitData,
@@ -125,4 +140,5 @@ export {
   getEnterCountData,
   getEntryExitData,
   getUrlFlowData,
+  getButtonDistData,
 };
