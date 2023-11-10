@@ -97,6 +97,26 @@ const getEntryExitData = async (startDateTime: Date, endDateTime: Date) => {
   return [];
 };
 
+const getUrlFlowData = async (
+  startDateTime: Date,
+  endDateTime: Date,
+  currentUrl: string,
+) => {
+  try {
+    const response = await accumulAPI.post("/flow/urlflow", {
+      applicationToken,
+      startDateTime,
+      endDateTime,
+      currentUrl,
+    });
+    return response.data;
+  } catch (error) {
+    // console.error(error); // 에러 처리
+  }
+
+  return [];
+};
+
 export {
   getRefData,
   getExitData,
@@ -104,4 +124,5 @@ export {
   getBounceCountData,
   getEnterCountData,
   getEntryExitData,
+  getUrlFlowData,
 };

@@ -102,6 +102,12 @@ type EntryExitDtoType = {
   exitRate: number;
 };
 
+type UrlFlowDtoType = {
+  id: number;
+  beforeUrl: string;
+  count: number;
+};
+
 // -------------- Data Type
 type ButtonType = {
   id: number;
@@ -127,4 +133,5 @@ export type {
   BounceDtoType,
   PageEnterDtoType,
   EntryExitDtoType,
+  UrlFlowDtoType,
 };
