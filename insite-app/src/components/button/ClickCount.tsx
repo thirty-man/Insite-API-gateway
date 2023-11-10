@@ -100,7 +100,11 @@ function ClickCount() {
     ],
   };
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+  return data.length <= 0 ? (
+    <div>데이터가 없습니다.</div>
+  ) : (
+    <HighchartsReact highcharts={Highcharts} options={options} />
+  );
 }
 
 export default ClickCount;

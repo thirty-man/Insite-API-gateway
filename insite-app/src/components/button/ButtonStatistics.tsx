@@ -30,6 +30,9 @@ function ButtonStatistics() {
         if (response) {
           setAvg(response.totalAvg);
           setData(response.buttonDistDtoList);
+        } else {
+          setAvg(0);
+          setData([]);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -42,7 +45,7 @@ function ButtonStatistics() {
   const transformedData = data.map((item) => ({
     name: item.name,
     clickCounts: item.clickCounts,
-    percentage: parseFloat(item.increaseDecreaseRate.toFixed(4)),
+    percentage: item.increaseDecreaseRate,
   }));
 
   const options = {
@@ -146,11 +149,11 @@ function ButtonStatistics() {
             color: "white",
           },
         },
-        color: "#0db6e0",
+        color: "#6646ef",
       },
       {
         name: "클릭 평균",
-        data: Array(data.length).fill(parseFloat(avg.toFixed(2))),
+        data: Array(data.length).fill(avg),
         yAxis: 0,
         type: "line",
         dataLabels: {

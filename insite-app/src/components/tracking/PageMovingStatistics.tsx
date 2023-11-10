@@ -1,4 +1,4 @@
-import { getUrlFlowData } from "@api/accumulApi";
+import { getAllUrl, getUrlFlowData } from "@api/accumulApi";
 import {
   Border,
   StyledTable,
@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@assets/styles/tableStyles";
 import { TextBox } from "@components/common";
-import { UrlFlowDtoType } from "@customtypes/dataTypes";
+import { CurrentUrlDtoType, UrlFlowDtoType } from "@customtypes/dataTypes";
 import { RootState } from "@reducer";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
@@ -40,19 +40,6 @@ const MoveButton = styled.button<TextMoveButton>`
   background-color: ${(props) => props.theme.colors.a2};
 `;
 
-const urlDummy = [
-  { id: 0, url: "로그인 페이지" },
-  { id: 1, url: "레퍼러_1" },
-  { id: 2, url: "https://www.youtube.com" },
-  { id: 3, url: "https://www.facebook.com" },
-  { id: 4, url: "https://www.twitter.com" },
-  { id: 5, url: "https://www.instagram.com" },
-  { id: 6, url: "https://www.linkedin.com" },
-  { id: 7, url: "https://www.github.com" },
-  { id: 8, url: "https://www.stackoverflow.com" },
-  { id: 9, url: "https://www.reddit.com" },
-];
-
 function PageMovingStatistics() {
   // 외부 div(flex)
   // 페이지  URL 불러오기 + 직전 URL 버튼DIv
@@ -66,6 +53,7 @@ function PageMovingStatistics() {
 
   const [selectedUrl, setSelectedUrl] = useState(""); // 이동 버튼 누를 때 선택되는
   const [data, setData] = useState<UrlFlowDtoType[]>([]);
+  const [urlData, setUrlData] = useState<CurrentUrlDtoType[]>([]);
 
   // URL List를 불러와 세부 데이터를 설정하는 useEffect
   useEffect(() => {
@@ -87,7 +75,18 @@ function PageMovingStatistics() {
       }
     };
 
+    const getUrlData = async () => {
+      try {
+        const response = await getAllUrl(parseStartDateTime, parseEndDateTime);
+        if (!response.currentUrlDtoList) setUrlData([]);
+        else setUrlData(response.currentUrlDtoList);
+      } catch (error) {
+        // console.error(error); // 에러 처리
+      }
+    };
+
     fetchData();
+    getUrlData();
   }, [endDateTime, selectedUrl, startDateTime]);
 
   const pageMove = (url: string) => {
@@ -114,6 +113,10 @@ function PageMovingStatistics() {
       backgroundColor: "transparent",
       width: 600, // 차트의 너비 설정
       height: 300, // 차트의 높이 설정
+      scrollablePlotArea: {
+        minWidth: 600,
+        scrollPositionX: 1,
+      },
     },
     title: {
       text: "",
@@ -184,11 +187,11 @@ function PageMovingStatistics() {
               </tr>
             </TableHeader>
             <TableBody>
-              {urlDummy.map((item) => (
+              {urlData.map((item) => (
                 <TableRow key={item.id}>
-                  <TableCell>{item.url}</TableCell>
+                  <TableCell>{item.currentUrl}</TableCell>
                   <TableCell>
-                    <MoveButton onClick={() => pageMove(item.url)}>
+                    <MoveButton onClick={() => pageMove(item.currentUrl)}>
                       이동
                     </MoveButton>
                   </TableCell>

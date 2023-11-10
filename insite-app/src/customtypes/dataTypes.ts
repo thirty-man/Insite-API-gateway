@@ -120,6 +120,12 @@ type EveryButtonDistResDto = {
   buttonDistDtoList: ButtonDIstDtoType[];
 };
 
+type CurrentUrlDtoType = {
+  id: number;
+  currentUrl: string;
+  count: number;
+};
+
 // -------------- Data Type
 type ButtonType = {
   id: number;
@@ -148,4 +154,5 @@ export type {
   UrlFlowDtoType,
   EveryButtonDistResDto,
   ButtonDIstDtoType,
+  CurrentUrlDtoType,
 };
