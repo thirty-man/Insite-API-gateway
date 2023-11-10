@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "@reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { myprofile } from "@assets/icons";
+import { IconUser } from "@assets/icons";
 import {
   CalendarButton,
   StartDateSelect,
@@ -47,15 +47,26 @@ const ProfileWrapper = styled.div`
   align-items: center;
   position: relative;
 `;
-const ProfileImg = styled.img`
+
+const ProfileButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  margin-top: 10px;
+  background-color: #6646ef;
+  border-radius: 15px;
+  margin-top: 2px;
   margin-right: 35px;
   margin-left: 15px;
+  cursor: pointer;
+`;
+const ProfileImg = styled.img`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 60%;
   cursor: pointer;
 `;
 
@@ -118,11 +129,11 @@ const SettingDate = styled.button`
   width: 8rem;
   height: 14rem;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.a1};
+  background-color: #6646ef;
   border-radius: 8px;
   font-size: 18px;
   font-weight: 700;
-  color: black;
+  color: white;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 `;
@@ -363,8 +374,6 @@ function Header() {
               }}
             >
               <CalendarButton
-                width="100%"
-                height="100%"
                 startDate={parseStartDate}
                 endDate={parseEndDate}
               />
@@ -429,11 +438,13 @@ function Header() {
           }}
         />
         <ProfileWrapper>
-          <ProfileImg
-            src={myprofile}
-            alt="my profile"
-            onClick={handleToggleProfile}
-          />
+          <ProfileButton>
+            <ProfileImg
+              src={IconUser}
+              alt="my profile"
+              onClick={handleToggleProfile}
+            />
+          </ProfileButton>
           {openProfile && (
             <Modal
               width="15rem"

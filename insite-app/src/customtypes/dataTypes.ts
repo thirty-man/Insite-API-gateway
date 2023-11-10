@@ -42,7 +42,7 @@ type UserCountDtoType = {
 type ChartDtoType = {
   name: string;
   y: number;
-  dataLables: {
+  dataLabels: {
     enabled: boolean;
     format: string;
     style?: StyleType;
@@ -102,6 +102,46 @@ type EntryExitDtoType = {
   exitRate: number;
 };
 
+type AverageActiveTimeDtoType = {
+  id: number;
+  currentUrl: string;
+  averageActiveTime: number;
+};
+
+type ActiveUserPerUserDtoType = {
+  id: number;
+  currentUrl: string;
+  activeUserPerUser: number;
+};
+
+type ActiveUserCountDtoType = {
+  id: number;
+  currentUrl: string;
+  activeUserCount: number;
+  ratio: number;
+};
+
+type ViewCountsPerActiveUserDtoType = {
+  id: number;
+  currentUrl: string;
+  count: number;
+  ratio: number;
+};
+
+type OSActiveUserDtoType = {
+  id: number;
+  os: string;
+  count: number;
+  ratio: number;
+};
+
+type ActiveUserPertimeDtoType = {
+  nightActiveUserCount: number;
+  morningActiveUserCount: number;
+  afternoonActiveUserCount: number;
+  eveningActiveUserCount: number;
+};
+
 // -------------- Data Type
 type ButtonType = {
   id: number;
@@ -127,4 +167,10 @@ export type {
   BounceDtoType,
   PageEnterDtoType,
   EntryExitDtoType,
+  AverageActiveTimeDtoType,
+  ActiveUserPerUserDtoType,
+  ActiveUserCountDtoType,
+  ViewCountsPerActiveUserDtoType,
+  OSActiveUserDtoType,
+  ActiveUserPertimeDtoType,
 };
