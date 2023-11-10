@@ -141,6 +141,24 @@ type ActiveUserPertimeDtoType = {
   afternoonActiveUserCount: number;
   eveningActiveUserCount: number;
 };
+type UserStatisticsDtoType = {
+  id: number;
+  currentUrl: string;
+  userCount: number;
+};
+
+type ViewCountsByCookieDtoType = {
+  id: number;
+  currentUrl: string;
+  count: number;
+};
+
+type ViewCountsPerUserDtoListType = {
+  id: number;
+  cookieId: string;
+  size: number;
+  userDtoList: ViewCountsByCookieDtoType[];
+};
 
 // -------------- Data Type
 type ButtonType = {
@@ -173,4 +191,7 @@ export type {
   ViewCountsPerActiveUserDtoType,
   OSActiveUserDtoType,
   ActiveUserPertimeDtoType,
+  UserStatisticsDtoType,
+  ViewCountsPerUserDtoListType,
+  ViewCountsByCookieDtoType,
 };

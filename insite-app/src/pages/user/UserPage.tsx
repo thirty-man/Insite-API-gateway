@@ -1,4 +1,6 @@
 import { DefaultBox, TextBox, TitleBox } from "@components/common";
+import PageUsagePerUser from "@components/user/PageUsageUser";
+import UserStatistics from "@components/user/UserStatistics";
 import styled from "styled-components";
 
 const FirstCol = styled.div`
@@ -47,7 +49,7 @@ function UserPage() {
             </TitleBox>
             <ContentDiv>
               <TextBox width="90%" height="90%">
-                꺾은선 그래프
+                <UserStatistics />
               </TextBox>
             </ContentDiv>
           </DefaultBox>
@@ -57,7 +59,7 @@ function UserPage() {
             </TitleBox>
             <ContentDiv>
               <TextBox width="90%" height="90%">
-                표
+                <PageUsagePerUser />
               </TextBox>
             </ContentDiv>
           </DefaultBox>
