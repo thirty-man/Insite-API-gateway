@@ -27,7 +27,7 @@ function ButtonStatistics() {
           parseStartDateTime,
           parseEndDateTime,
         );
-        if (response) {
+        if (response.buttonDistDtoList && response.totalAvg) {
           setAvg(response.totalAvg);
           setData(response.buttonDistDtoList);
         } else {
