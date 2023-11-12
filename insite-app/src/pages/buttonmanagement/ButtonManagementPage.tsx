@@ -1,5 +1,9 @@
-import { ButtonStatistics, ClickCount } from "@components/button";
-import { DefaultBox, TextBox, TitleBox } from "@components/common";
+import {
+  ButtonClickLogs,
+  ButtonStatistics,
+  ClickCount,
+} from "@components/button";
+import { DefaultBox, TitleBox } from "@components/common";
 import { ButtonType, ItemType } from "@customtypes/dataTypes";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
@@ -51,7 +55,7 @@ function ButtonManagementPage() {
         setButtonList(response.buttonDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
 
@@ -77,9 +81,7 @@ function ButtonManagementPage() {
           <TitleBox width="" height="10%">
             버튼 클릭 로그
           </TitleBox>
-          <TextBox width="90%" height="80%">
-            표
-          </TextBox>
+          <ButtonClickLogs />
         </DefaultBox>
       </FirstCol>
       <SecondCol>
