@@ -29,7 +29,7 @@ function ClickCount() {
           parseStartDateTime,
           parseEndDateTime,
         );
-        if (response.clickCountsDtoList.length <= 0) setData([]);
+        if (!response.clickCountsDtoList) setData([]);
         else setData(response.clickCountsDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console

@@ -52,7 +52,8 @@ function ButtonManagementPage() {
     const fetchData = async () => {
       try {
         const response = await getButtonList();
-        setButtonList(response.buttonDtoList);
+        if (!response.buttonDtoList) setButtonList([]);
+        else setButtonList(response.buttonDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console
         // console.error(error); // 에러 처리
