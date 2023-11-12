@@ -147,6 +147,26 @@ const getAllUrl = async (startDateTime: Date, endDateTime: Date) => {
   return [];
 };
 
+const getButtonLogs = async (
+  startDateTime: Date,
+  endDateTime: Date,
+  buttonName: string,
+) => {
+  try {
+    const response = await accumulAPI.post("/buttons/logs", {
+      applicationToken,
+      startDateTime,
+      endDateTime,
+      buttonName,
+    });
+    return response.data;
+  } catch (error) {
+    // console.error(error); // 에러 처리
+  }
+
+  return [];
+};
+
 export {
   getRefData,
   getExitData,
@@ -157,4 +177,5 @@ export {
   getUrlFlowData,
   getButtonDistData,
   getAllUrl,
+  getButtonLogs,
 };

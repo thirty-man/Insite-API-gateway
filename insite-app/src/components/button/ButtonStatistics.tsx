@@ -166,7 +166,11 @@ function ButtonStatistics() {
     ],
   };
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+  return data.length > 0 ? (
+    <HighchartsReact highcharts={Highcharts} options={options} />
+  ) : (
+    <div>데이터가 없습니다</div>
+  );
 }
 
 export default ButtonStatistics;

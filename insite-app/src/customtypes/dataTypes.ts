@@ -108,7 +108,7 @@ type UrlFlowDtoType = {
   count: number;
 };
 
-type ButtonDIstDtoType = {
+type ButtonDistDtoType = {
   id: number;
   name: string;
   clickCounts: number;
@@ -117,13 +117,27 @@ type ButtonDIstDtoType = {
 
 type EveryButtonDistResDto = {
   totalAvg: number;
-  buttonDistDtoList: ButtonDIstDtoType[];
+  buttonDistDtoList: ButtonDistDtoType[];
 };
 
 type CurrentUrlDtoType = {
   id: number;
   currentUrl: string;
   count: number;
+};
+
+type ButtonLogDtoType = {
+  id: number;
+  currentUrl: string;
+  clickDateTime: string;
+  cookieId: string;
+  isAbnormal: boolean;
+};
+
+type ButtonLogsResDto = {
+  exitRate: number;
+  clickCountsPerActiveUsers: number;
+  buttonLogDtoList: ButtonLogDtoType[];
 };
 
 // -------------- Data Type
@@ -153,6 +167,8 @@ export type {
   EntryExitDtoType,
   UrlFlowDtoType,
   EveryButtonDistResDto,
-  ButtonDIstDtoType,
+  ButtonDistDtoType,
   CurrentUrlDtoType,
+  ButtonLogDtoType,
+  ButtonLogsResDto,
 };

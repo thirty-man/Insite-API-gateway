@@ -33,7 +33,7 @@ function ClickCount() {
         else setData(response.clickCountsDtoList);
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.error(error); // 에러 처리
+        // console.error(error); // 에러 처리
       }
     };
     getDetailData();
