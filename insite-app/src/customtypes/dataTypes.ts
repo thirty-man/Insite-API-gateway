@@ -170,6 +170,51 @@ type AbnormalDtoListType = {
   osId: string;
 };
 
+type UrlFlowDtoType = {
+  id: number;
+  beforeUrl: string;
+  count: number;
+};
+
+type ButtonDistDtoType = {
+  id: number;
+  name: string;
+  clickCounts: number;
+  increaseDecreaseRate: number;
+};
+
+type EveryButtonDistResDto = {
+  totalAvg: number;
+  buttonDistDtoList: ButtonDistDtoType[];
+};
+
+type CurrentUrlDtoType = {
+  id: number;
+  currentUrl: string;
+  count: number;
+};
+
+type ButtonLogDtoType = {
+  id: number;
+  currentUrl: string;
+  clickDateTime: string;
+  cookieId: string;
+  isAbnormal: boolean;
+};
+
+type ButtonLogsResDto = {
+  exitRate: number;
+  clickCountsPerActiveUsers: number;
+  buttonLogDtoList: ButtonLogDtoType[];
+};
+
+type ApplicationDtoType = {
+  applicationId: number;
+  name: string;
+  applicationUrl: string;
+  applicationToken: string;
+};
+
 // -------------- Data Type
 type ButtonType = {
   id: number;
@@ -205,4 +250,11 @@ export type {
   ViewCountsPerUserDtoType,
   CookieIdUrlDtoType,
   AbnormalDtoListType,
+  UrlFlowDtoType,
+  EveryButtonDistResDto,
+  ButtonDistDtoType,
+  CurrentUrlDtoType,
+  ButtonLogDtoType,
+  ButtonLogsResDto,
+  ApplicationDtoType,
 };
