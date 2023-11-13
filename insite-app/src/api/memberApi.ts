@@ -24,9 +24,9 @@ const createButton = async (name: string) => {
       applicationToken,
       name,
     });
-    return response.data;
+    return response;
   } catch (error) {
-    // console.error(error); // 에러 처리
+    // console.error("등록에러: ", error); // 에러 처리
   }
 
   return [];
@@ -54,7 +54,7 @@ const createStie = async (name: string, applicationUrl: string) => {
       name,
       applicationUrl,
     });
-    return response.data;
+    return response;
   } catch (error) {
     // console.error(error); // 에러 처리
   }
