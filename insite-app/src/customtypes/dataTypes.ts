@@ -147,17 +147,27 @@ type UserStatisticsDtoType = {
   userCount: number;
 };
 
-type ViewCountsByCookieDtoType = {
-  id: number;
+type ViewCountsPerUserDtoType = {
   currentUrl: string;
   count: number;
+  ratio: number;
 };
 
-type ViewCountsPerUserDtoListType = {
+type CookieIdUrlDtoType = {
   id: number;
   cookieId: string;
   size: number;
-  userDtoList: ViewCountsByCookieDtoType[];
+  viewCountsPerUserDtoList: ViewCountsPerUserDtoType[];
+};
+
+type AbnormalDtoListType = {
+  id: number;
+  cookieId: string;
+  date: string;
+  currentUrl: string;
+  language: string;
+  requestCnt: number;
+  osId: string;
 };
 
 // -------------- Data Type
@@ -192,6 +202,7 @@ export type {
   OSActiveUserDtoType,
   ActiveUserPertimeDtoType,
   UserStatisticsDtoType,
-  ViewCountsPerUserDtoListType,
-  ViewCountsByCookieDtoType,
+  ViewCountsPerUserDtoType,
+  CookieIdUrlDtoType,
+  AbnormalDtoListType,
 };

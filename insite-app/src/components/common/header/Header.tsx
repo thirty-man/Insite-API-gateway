@@ -464,18 +464,11 @@ function Header() {
               </Option>
               <Option
                 onClick={() => {
-                  if (currentPathname !== "/main") {
-                    navi("/main");
-                  } else {
-                    navi("/mysite");
-                  }
-
+                  navi("/mysite");
                   setOpenProfile(false);
                 }}
               >
-                {currentPathname === "/main"
-                  ? "사이트 선택하러 가기"
-                  : "메인으로 가기"}
+                사이트 선택하러 가기
               </Option>
             </Modal>
           )}
