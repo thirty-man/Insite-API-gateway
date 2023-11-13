@@ -5,7 +5,6 @@ import { DefaultBox } from "@components/common";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ButtonType } from "@customtypes/dataTypes";
-import ButtonList from "@components/ButtonList";
 import { createButton, getButtonList } from "@api/memberApi";
 
 const ManagementStyle = styled.div`
@@ -32,8 +31,11 @@ const ManagementStyle = styled.div`
     margin-top: 40px;
   }
 `;
-const AddButton = styled.div`
+const AddButton = styled.button`
   flex: 1;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   margin-right: 10px; /* 간격 조절 */
   padding: 20px; /* 버튼 크기 조절 */
   font-size: 18px; /* 폰트 크기 조절 */
@@ -47,7 +49,7 @@ const AddButton = styled.div`
   &:hover {
     background-color: #00e6ff; /* 호버링 시 배경색 변경 */
   }
-  width: 500px;
+  width: 30rem;
   height: auto;
 `;
 
@@ -273,23 +275,9 @@ function ServiceManagementPage() {
               </div>
             </div>
             <div>
-              <div>
-                <AddButton>
-                  <button
-                    type="button"
-                    onClick={openModal}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      cursor: "pointer",
-                      backgroundColor: "transparent",
-                      fontSize: "18px",
-                    }}
-                  >
-                    버튼 추가하기
-                  </button>
-                </AddButton>
-              </div>
+              <AddButton type="button" onClick={openModal}>
+                버튼 추가하기
+              </AddButton>
             </div>
           </DefaultBox>
         </div>

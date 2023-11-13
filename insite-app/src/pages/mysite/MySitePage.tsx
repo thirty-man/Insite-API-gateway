@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { BackgroundDiv, TextBox } from "@components/common";
 import MainHeader from "@components/common/header/MainHeader";
 import styled from "styled-components";
-import { ItemType } from "@customtypes/dataTypes";
+import { ApplicationDtoType } from "@customtypes/dataTypes";
 import { plus, insitePanda } from "@assets/images"; // 이미지를 불러옴
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { createStie, getSiteList } from "@api/memberApi";
 
 const MainContainer = styled.div`
   width: 80%;
@@ -111,30 +111,23 @@ function MySitePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
   const [serviceUrl, setServiceUrl] = useState("");
-  // const [siteList, setSiteList] = useState([]);
-  const siteList = [
-    {
-      name: "인사",
-    },
-    {
-      name: "인사",
-    },
-    {
-      name: "인사",
-    },
-    {
-      name: "인사",
-    },
-    {
-      name: "인사",
-    },
-    {
-      name: "인사",
-    },
-    {
-      name: "인사",
-    },
-  ];
+  const [siteList, setSiteList] = useState<ApplicationDtoType[]>([]);
+
+  // 등록된 사이트 리스트 가져오기
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getSiteList();
+        if (!response.applicationDtoList) setSiteList([]);
+        else setSiteList(response.applicationDtoList);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        // console.error(error); // 에러 처리
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -157,27 +150,20 @@ function MySitePage() {
   };
 
   const handleConfirm = () => {
-    // 서버 API 호출 로직 추가
-    const data = {
-      name: serviceName,
-      applicationUrl: serviceUrl,
-    };
     // API 호출
-    axios
-      .post("http://localhost:8081/api/v1/application/regist", data)
-      .then((response) => {
-        // API 호출이 성공하면 모달을 닫을 수 있도록 closeModal 호출
-        console.log("API 호출 성공", response.data);
-
+    const fetchData = async () => {
+      try {
+        const response = await createStie(serviceName, serviceUrl);
+        console.log("어플 등록 성공", response.data);
         closeModal();
         window.location.reload();
-      })
-      .catch((error) => {
-        // API 호출이 실패하면 에러를 처리할 수 있도록 추가 작업 필요
-        console.error("API 호출 실패", error);
-        // 에러 처리 로직 추가
-      });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        // console.error(error); // 에러 처리
+      }
+    };
 
+    fetchData();
     setServiceName("");
     setServiceUrl("");
 
@@ -198,8 +184,8 @@ function MySitePage() {
         <MainHeader />
         <OverflowContainer>
           <OutletContainer>
-            {siteList.map((item: ItemType) => (
-              <MySitePageStyle key={item.id}>
+            {siteList.map((item: ApplicationDtoType) => (
+              <MySitePageStyle key={item.applicationId}>
                 <Link to="/">
                   <TextBox width="100%" height="100%">
                     <img
@@ -220,14 +206,20 @@ function MySitePage() {
               </MySitePageStyle>
             ))}
             <MySitePageStyle>
-              <div
+              <button
+                type="button"
                 onClick={openModal}
-                style={{ width: "100%", height: "100%", cursor: "pointer" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  cursor: "pointer",
+                  backgroundColor: "transparent",
+                }}
               >
                 <TextBox width="100%" height="100%">
                   <Image src={plus} alt="Pig Image" />
                 </TextBox>
-              </div>
+              </button>
             </MySitePageStyle>
           </OutletContainer>
         </OverflowContainer>
@@ -252,7 +244,6 @@ function MySitePage() {
             />
             <ButtonContainer>
               <ConfirmButton onClick={handleConfirm}>확인</ConfirmButton>
-
               <CancelButton onClick={handleCancel}>취소</CancelButton>
             </ButtonContainer>
           </ModalContent>

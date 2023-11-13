@@ -34,4 +34,32 @@ const createButton = async (name: string) => {
 
 // 어플리케이션 정보 받아오기
 
-export { getButtonList, createButton };
+const getSiteList = async () => {
+  try {
+    const response = await memberAPI.post("/application/list", {
+      applicationToken,
+    });
+    return response.data;
+  } catch (error) {
+    // console.error(error); // 에러 처리
+  }
+
+  return [];
+};
+
+const createStie = async (name: string, applicationUrl: string) => {
+  try {
+    const response = await memberAPI.post("/application/regist", {
+      applicationToken,
+      name,
+      applicationUrl,
+    });
+    return response.data;
+  } catch (error) {
+    // console.error(error); // 에러 처리
+  }
+
+  return [];
+};
+
+export { getButtonList, createButton, getSiteList, createStie };
